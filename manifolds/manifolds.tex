@@ -1,0 +1,90 @@
+%LaTeX Template for short student reports.
+% Citations should be in bibtex format and go in references.bib
+\documentclass[a4paper, 11pt]{article}
+\usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
+\geometry{a4paper} 
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{graphicx} 
+\usepackage{amsmath,amsfonts,amssymb,amsthm}  
+\usepackage{bm}  
+\usepackage[backend=bibtex,style=numeric]{biblatex}  %backend=biber is 'better'
+\usepackage[bookmarks,colorlinks,breaklinks]{hyperref}  
+%\hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black} % black links, for printed output
+\usepackage{memhfixc} 
+\usepackage{pdfsync}  
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs, multirow}
+\usepackage[
+singlelinecheck=false % <-- important
+]{caption}
+\usepackage{url}
+
+\graphicspath{ {./images/} }
+
+\pagestyle{fancy}
+
+\renewcommand{\contentsname}{Rozdziały}
+\renewcommand{\figurename}{Grafika}
+\captionsetup[table]{name=Tabela}
+
+\title{Manifolds}
+%\date{}
+
+\addbibresource{references.bib}
+
+\begin{document}
+\maketitle
+\hypersetup{linkcolor=black}
+\tableofcontents
+
+\section{Topology}
+TODO: add
+
+\section{Tangent Space}
+
+\subsection{Definition}
+Let $(M, \tau)$ be a $C^k$ differentiable manifold, $(U, \phi)$ chart on $M$ and $p \in U$. 
+Let $\gamma_1, \gamma_2: (-1, 1) \rightarrow U$ be two curves such that $\gamma_1(0) = \gamma_2(0) = p$ and $D_{\phi \circ \gamma_1}(x), D_{\phi \circ \gamma_2}(x) \in C^k[(-1, 1), R^n]$. \\
+Let \texttildelow T be an equivalence relation on the set of curves meeting the above conditions s.t.
+$\gamma_1 \text{\texttildelow} \gamma_2 \iff D_{\phi \circ \gamma_1}(\phi \circ \gamma_1)(0) = D_{\phi \circ \gamma_2}(\phi \circ \gamma_2)(0)$. \\
+Finally, a tangent space $T_pM$ is defined as a set of equivalence classes of curves meeting the above conditions. \\
+\begin{flalign}
+	& [\gamma]_\text{\texttildelow} = \{\gamma': (-1, 1) \rightarrow U \text{ s.t. } \gamma \text{\texttildelow} \gamma' \}  \\
+	& T_pM = \{[\gamma]_\text{\texttildelow}: (-1, 1) \rightarrow U, \phi \circ \gamma \in C^k[(-1, 1), \mathbb{R}^n], \gamma(0) = p \}
+\end{flalign}
+Since $\gamma_1(0) = \gamma_2(0) = p \implies $D_{\phi \circ \gamma_1}(0) = D_{\phi \circ \gamma_2(0)} \phi \circ \gamma_2'(0) \iff [\gamma_1]_\text{\texttildelow} = [\gamma_2]_\text{\texttildelow}$, it follows that\\
+SHOW INDEPENDENCE FROM CHART. \\
+
+\subsection{Differential}
+
+Let $(M_1, \tau_1) (M_2, \tau_2)$, be $C^k$ differentiable manifolds, $f: M_1 \rightarrow M_2$ be a smooth map and $p \in U \in \tau_1$. \\
+We define a differential (or pushforward) as a map between tangent spaces as follows:
+\begin{flalign}
+	& df: T_pM \rightarrow T_{f(p)}M \\
+	& df([\gamma]_\text{\texttildelow}) := D_{f \circ \gamma}(0) \\
+\end{flalign}
+
+\subsection{Operations on tangent space}
+To define operations on the elements of $T_pM$, if $(U, \phi)$ is a chart with $p \in U$, one may define a differential being a bijection:
+
+\begin{flalign}
+	& h_*: T_pM \rightarrow T_{\phi(p)}\mathbb{R}^n = \mathbb{R}^n \\
+	& h_*([\gamma]_\text{\texttildelow}) := D_{\phi \circ \gamma}(0) \\
+\end{flalign}
+Then the operations on $T_pM$ are defined as follows:
+
+\begin{flalign}
+	& \text{for } u, v \in T_pM \text{ and } \lambda \in \mathbb{R} \\
+	& u + v := h_*^{-1}( h_*(u) + h_*(v) ) \\
+	& \lambda u:= h_*^{-1}(\lambda h_*(v) ) \\
+\end{flalign}
+Thus $T_pM$ is a vector space isomorphic to $\mathbb{R}^n$.
+
+\subsubsection{Basis}
+If $B = \{e_1, e_2, .. e_n\}$ is a basis of $\mathbb{R}^n$, then $B^* = \{h_*^{-1}(e_1), h_*^{-1}(e_2), .. h_*^{-1}(e_n)\}$ is a basis of $T_pM$.
+
+\end{document}
+
