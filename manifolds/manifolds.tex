@@ -120,5 +120,33 @@ $TM := \bigcup\limits_{p \in M} \{p\} \times T_pM$
 Natural projection $\pi: TM \rightarrow M$ is defined as:
 $\pi(p, T_pM) := p$
 
+\section{Metric Tensor}
+Let M be a $C^k$ differentiable manifold and $p \in M$. \\
+A metric tensor $g_p: T_pM \times T_pM \rightarrow \Real$ is a map that is: \\
+\begin{itemize}
+  \item Bilinear: 
+		\begin{itemize}
+			\item $g_p(u, \lambda v) = g_p(\lambda u, v) = \lambda g_p(u, v)$,
+			\item $g_p(u + w, v) = g_p(u, v) + g_p(w, v)$,
+			\item $g_p(u, v + w) = g_p(u, v) + g_p(u, w)$.
+		\end{itemize}
+  \item Symmetric: $g_p(u, v) = g_p(v, u)$.
+  \item Nondegenerate:	$\forall v \in T_pM: v \neq 0 \implies \exists u \in T_pM: g_p(u, v) \neq 0$
+  \item If $g_{u, v}: M \rightarrow \Real, \text{ with } g_{u, v}(p) := g_p(u, v)$, then \\
+$g_{u, v}$ is a smooth function.
+\end{itemize}
+
+\section{Riemann semi-maniofld}
+Let $M$ be a $C^k$ smooth manifold and $g_p: T_pM \times T_pM \rightarrow \Real$ be its metric tensor. We say that a tuple $(M, g_p)$ is called a Riemann semi-maniofld. \\
+$g_p$ is also called a Riemann Metric.
+
+\subsection{Riemann norm}
+For a given metric tensor $g_p$, Riemann norm is defined as $\|\cdot\|: T_pM \rightarrow \Real, \text{ with } \|v\| := \sqrt{g_p(v, v)}$
+
+\subsection{Curve length}
+Let $\gamma: (a, b) \subseteq \Real \rightarrow M$ be a parametrized smooth map. \\
+We define the length of this curve as: \\
+$L(\gamma) := \int_a^b \|[\gamma]_\text{\texttildelow}\| dt = \int_a^b \sqrt{g_p([\gamma]_\text{\texttildelow}, [\gamma]_\text{\texttildelow})} dt$
+
 \end{document}
 
