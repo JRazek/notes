@@ -60,24 +60,16 @@ Finally, a tangent space $T_pM$ is defined as a set of equivalence classes of cu
 Since $\gamma_1(0) = \gamma_2(0) = p \implies D_{\phi \circ \gamma_1}(0) = D_{\phi \circ \gamma_2(0)} \phi \circ \gamma_2'(0) \iff [\gamma_1]_\text{\texttildelow} = [\gamma_2]_\text{\texttildelow}$, it follows that\\
 SHOW INDEPENDENCE FROM CHART. \\
 
-\subsection{Differential}
-
-Let $(M_1, \tau_1) (M_2, \tau_2)$, be $C^k$ differentiable manifolds, $f: M_1 \rightarrow M_2$ be a smooth map and $p \in U \in \tau_1$. \\
-We define a differential (or pushforward) as a map between tangent spaces as follows:
-\begin{flalign}
-	& df: T_pM \rightarrow T_{f(p)}M \\
-	& df([\gamma]_\text{\texttildelow}) := D_{f \circ \gamma}(0) \\
-\end{flalign}
-
 \subsection{Operations on tangent space}
-To define operations on the elements of $T_pM$, if $(U, \phi)$ is a chart with $p \in U$, one may define a differential:
+To define operations on the elements of $T_pM$, if $(U, \phi)$ is a chart with $p \in U$, one may define a map:
 
 \begin{flalign}
 	& h_*: T_pM \rightarrow T_{\phi(p)}\mathbb{R}^n = \mathbb{R}^n, \\
 	& h_*([\gamma]_\text{\texttildelow}) := D_{\phi \circ \gamma}(0). \\
 \end{flalign}
+Note that $D_{\phi \circ \gamma}(0)$ is a well defined $\phi \circ \gamma: \Real \rightarrow \Real^n$. \\
+\\
 Then the operations on $T_pM$ are defined as follows:
-
 \begin{flalign}
 	& \text{for } u, v \in T_pM \text{ and } \lambda \in \mathbb{R} \\
 	& u + v := h_*^{-1}( h_*(u) + h_*(v) ), \\
@@ -89,6 +81,17 @@ Thus $T_pM$ is a vector space isomorphic to $\mathbb{R}^n$.
 
 \subsubsection{Basis}
 If $B = \{e_1, e_2, .. e_n\}$ is a basis of $\mathbb{R}^n$, then $B_{T_pM} = \{h_*^{-1}(e_1), h_*^{-1}(e_2), .. h_*^{-1}(e_n)\}$ is a basis of $T_pM$.
+
+
+\subsection{Differential}
+
+Let $(M_1, \tau_1) (M_2, \tau_2)$, be $C^k$ differentiable manifolds, $f: M_1 \rightarrow M_2$ be a smooth map and $p \in U \in \tau_1$. \\
+We define a differential (or pushforward) as a map between tangent spaces as follows:
+\begin{flalign}
+	& df: T_pM_1 \rightarrow T_{f(p)}M_2 \\
+	& df([\gamma]_\text{\texttildelow}) := [f \circ \gamma]\text{\texttildelow} \in T_{f(p)}M_2
+\end{flalign}
+Note that $[f \circ \gamma]\text{\texttildelow}$ is a equivalence class of all curves $f \circ \gamma: (-1, 1) \rightarrow M_2$, with $(f \circ \gamma)(0) = f(p)$ and $(f \circ \gamma_1) \text{\texttildelow} (f \circ \gamma_2) \iff D_{\psi \circ (f \circ \gamma_1)}(0) = D_{\psi \circ (f \circ \gamma_2)}(0)$, for some $\psi$ being a chart of $M_2$ on neighbourhood of $f(p)$.
 
 \subsection{Cotangent Space}
 Let $M$ be a $C^k$ differentiable manifold, $p \in M$. \\
