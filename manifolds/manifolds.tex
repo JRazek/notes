@@ -21,6 +21,8 @@
 singlelinecheck=false % <-- important
 ]{caption}
 \usepackage{url}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\Real}{\mathbb{R}}
 
 \graphicspath{ {./images/} }
 
@@ -55,7 +57,7 @@ Finally, a tangent space $T_pM$ is defined as a set of equivalence classes of cu
 	& [\gamma]_\text{\texttildelow} = \{\gamma': (-1, 1) \rightarrow U \text{ s.t. } \gamma \text{\texttildelow} \gamma' \}  \\
 	& T_pM = \{[\gamma]_\text{\texttildelow}: (-1, 1) \rightarrow U, \phi \circ \gamma \in C^k[(-1, 1), \mathbb{R}^n], \gamma(0) = p \}
 \end{flalign}
-Since $\gamma_1(0) = \gamma_2(0) = p \implies $D_{\phi \circ \gamma_1}(0) = D_{\phi \circ \gamma_2(0)} \phi \circ \gamma_2'(0) \iff [\gamma_1]_\text{\texttildelow} = [\gamma_2]_\text{\texttildelow}$, it follows that\\
+Since $\gamma_1(0) = \gamma_2(0) = p \implies D_{\phi \circ \gamma_1}(0) = D_{\phi \circ \gamma_2(0)} \phi \circ \gamma_2'(0) \iff [\gamma_1]_\text{\texttildelow} = [\gamma_2]_\text{\texttildelow}$, it follows that\\
 SHOW INDEPENDENCE FROM CHART. \\
 
 \subsection{Differential}
@@ -68,23 +70,44 @@ We define a differential (or pushforward) as a map between tangent spaces as fol
 \end{flalign}
 
 \subsection{Operations on tangent space}
-To define operations on the elements of $T_pM$, if $(U, \phi)$ is a chart with $p \in U$, one may define a differential being a bijection:
+To define operations on the elements of $T_pM$, if $(U, \phi)$ is a chart with $p \in U$, one may define a differential:
 
 \begin{flalign}
-	& h_*: T_pM \rightarrow T_{\phi(p)}\mathbb{R}^n = \mathbb{R}^n \\
-	& h_*([\gamma]_\text{\texttildelow}) := D_{\phi \circ \gamma}(0) \\
+	& h_*: T_pM \rightarrow T_{\phi(p)}\mathbb{R}^n = \mathbb{R}^n, \\
+	& h_*([\gamma]_\text{\texttildelow}) := D_{\phi \circ \gamma}(0). \\
 \end{flalign}
 Then the operations on $T_pM$ are defined as follows:
 
 \begin{flalign}
 	& \text{for } u, v \in T_pM \text{ and } \lambda \in \mathbb{R} \\
-	& u + v := h_*^{-1}( h_*(u) + h_*(v) ) \\
-	& \lambda u:= h_*^{-1}(\lambda h_*(v) ) \\
+	& u + v := h_*^{-1}( h_*(u) + h_*(v) ), \\
+	& \lambda v:= h_*^{-1}(\lambda h_*(v) ). \\
 \end{flalign}
+\subsubsection{Bijectivity} 
+By the definition of a chart, it has to be a homeomorphism (continous, bijective) map.
 Thus $T_pM$ is a vector space isomorphic to $\mathbb{R}^n$.
 
 \subsubsection{Basis}
-If $B = \{e_1, e_2, .. e_n\}$ is a basis of $\mathbb{R}^n$, then $B^* = \{h_*^{-1}(e_1), h_*^{-1}(e_2), .. h_*^{-1}(e_n)\}$ is a basis of $T_pM$.
+If $B = \{e_1, e_2, .. e_n\}$ is a basis of $\mathbb{R}^n$, then $B_{T_pM} = \{h_*^{-1}(e_1), h_*^{-1}(e_2), .. h_*^{-1}(e_n)\}$ is a basis of $T_pM$.
+
+\subsection{Cotangent Space}
+Let $M$ be a $C^k$ differentiable manifold, $p \in M$. \\
+If $T_pM$ is a tangent space, then its dual space $T_p^*M$ is called a cotangent space. \\
+
+\subsubsection{Basis of Cotangent Space}
+If $B_{T_pM} = \{b_1, b_2, ..., b_n\}$ is a basis of tangent space, then basis of its dual space $B^*_{T_p^*M} = \{b_1^*, b_2^*, ..., b_n^*\}$ can be found as follows:
+\begin{flalign}
+	& b_i^* \in \Lagr(T_pM \rightarrow \Real), b_j \in B_{T_pM} \\
+	& b_i^* (b_j) := \delta_{ij} =
+						\begin{cases}
+								1, &         \text{if } i=j,\\
+								0, &         \text{if } i\neq j.
+						\end{cases}
+\end{flalign}
+
+\section{Submersion}
+Let $M, N$ be manifolds and $f: M \rightarrow N$ be a smooth map. \\
+Its pushforward $df: T_pM \rightarrow T_{f(p)}N$ is called an immersion if it is bijective.\\
 
 \end{document}
 
