@@ -30,6 +30,7 @@ singlelinecheck=false % <-- important
 
 \renewcommand{\contentsname}{Rozdziały}
 \renewcommand{\figurename}{Grafika}
+\newtheorem{theorem}{Theorem}
 \captionsetup[table]{name=Tabela}
 
 \title{Manifolds}
@@ -147,6 +148,40 @@ For a given metric tensor $g_p$, Riemann norm is defined as $\|\cdot\|: T_pM \ri
 Let $\gamma: (a, b) \subseteq \Real \rightarrow M$ be a parametrized smooth map. \\
 We define the length of this curve as: \\
 $L(\gamma) := \int_a^b \|[\gamma]_\text{\texttildelow}\| dt = \int_a^b \sqrt{g_p([\gamma]_\text{\texttildelow}, [\gamma]_\text{\texttildelow})} dt$
+
+
+\section{Exterior Algebra}
+\subsection{Alternating bilinear form}
+Let $V$ be a vector space over a field $F$. An alternating (or antisymmetric) bilinear form on $V$ is a bilinear form $B: V \times V \rightarrow F$ such that $B(v, w) = -B(w, v)$.
+
+\subsection{Second exterior power}
+Let $V$ be a finite-dimensional vector space over a field $F$ \\
+and $V_B = \{ B: V \times V \rightarrow F : B \text{ is alternating bilinear form.} \}$ be a vector space of all alternating bilinear forms.
+The second exterior power of $V$, denoted with $\bigwedge\nolimits^2 V$ is a dual space of $V_B$. i.e. $\bigwedge\nolimits^2 V = V_B^*$. Elements of $\bigwedge\nolimits^2 V$ are called 2-vectors.
+
+\subsection{Exterior product}
+Let $V$ be a finite-dimensional vector space over a field $F$ and $v, u \in V$ and $\bigwedge\nolimits^2 V$ be its second exterior power. Exterior product of $v$ and $u$, is a linear map to $F$ $v \wedge u \in \bigwedge\nolimits^2 V$ \\
+$(v \wedge u)(B) = B(v, u)$. \\\\
+From this definition, the following properties follow:
+\begin{flalign}
+	&(u \wedge v)(B) = B(u, v) = -(u \wedge v)(B) = -B(v, u) \\
+	&(u \wedge u)(B) = -(u \wedge u)(B) = 0 \\
+	&\text{if $\{v_1, v_2, \dots, v_n\}$ is a basis for $V$, then $\{ v_i \wedge v_j: i, j \in \{1, 2, \dots, n\}, i < j \}$ is a basis for $\bigwedge\nolimits^2 V$.}
+\end{flalign}
+
+\begin{theorem}
+	$u, v \in V, u \neq 0 \implies (u \wedge v = 0 \iff \exists_{\lambda \in F}: v = \lambda u)$
+	\begin{proof}
+	This basically mean that $u, v$ are in the same subspace and this may be shown with the following. \\
+	Let $v = \lambda u$. Then $u \wedge v = u \wedge (\lambda u) = \lambda (u \wedge u) = 0$. \\
+	\end{proof}
+\end{theorem}
+
+%\section{Differential forms}
+%
+%\subsection{Tensor Product}
+%Let $V$, $W$ be two vector spaces over a common field the respective bases $B_V = \{b_{v_1}, b_{v_2}, \dots\}, B_W = \{b_{w_1}, b_{w_2}, \dots\}$. A tensor product of these 2 vector spaces, denoted with $A \otimes B$ is a new vector space.
+%A set of all the bases of this vector space is given by: $B = \{ (v, w) \in B_V \times B
 
 \end{document}
 
