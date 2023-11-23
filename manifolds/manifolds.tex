@@ -24,6 +24,7 @@ singlelinecheck=false % <-- important
 \newcommand{\Lagr}{\mathcal{L}}
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Natural}{\mathbb{N}}
+\newcommand{\tangentvector}[2]{\frac{\partial #1}{\partial #2}}
 
 \graphicspath{ {./images/} }
 
@@ -94,16 +95,6 @@ Basis is often denoted by the following notation:
 \end{flalign}
 
 
-\subsection{Differential}
-
-Let $(M_1, \tau_1) (M_2, \tau_2)$, be $C^k$ differentiable manifolds, $f: M_1 \rightarrow M_2$ be a smooth map and $p \in U \in \tau_1$. \\
-We define a differential (or pushforward) as a map between tangent spaces as follows:
-\begin{flalign}
-	& df: T_pM_1 \rightarrow T_{f(p)}M_2 \\
-	& df([\gamma]_\text{\texttildelow}) := [f \circ \gamma]\text{\texttildelow} \in T_{f(p)}M_2
-\end{flalign}
-Note that $[f \circ \gamma]\text{\texttildelow}$ is a equivalence class of all curves $f \circ \gamma: (-1, 1) \rightarrow M_2$, with $(f \circ \gamma)(0) = f(p)$ and $(f \circ \gamma_1) \text{\texttildelow} (f \circ \gamma_2) \iff D_{\psi \circ (f \circ \gamma_1)}(0) = D_{\psi \circ (f \circ \gamma_2)}(0)$, for some $\psi$ being a chart of $M_2$ on neighbourhood of $f(p)$.
-
 \subsection{Cotangent Space}
 Let $M$ be a $C^k$ differentiable manifold, $p \in M$. \\
 If $T_pM$ is a tangent space, then its dual space $T_p^*M$ is called a cotangent space. \\
@@ -118,14 +109,35 @@ If $B_{T_pM} = \{b_1, b_2, ..., b_n\}$ is a basis of tangent space, then basis o
 				0, & \text{if } i\neq j.
 		\end{cases}
 \end{flalign}
+Consider now a basis of a tangent space $\frac{\partial}{\partial x^i}\text{\texttildelow} := h_*^{-1}(e_i)$. \\
+Its dual basis is given by $dx_i: T_xM \rightarrow \Real$, $dx_i(\frac{\partial}{\partial x^j}) := \delta{ij}.
+
+\subsection{Tangent bundle}
+Let $M$ be a $C^k$ differentiable manifold. We define a Tangent bundle as a set consisting of all tangent spaces defined as:
+$TM := \bigcup\limits_{p \in M} \{p\} \times T_pM$
+
+\subsection{Differential}
+
+Let $(M_1, \tau_1) (M_2, \tau_2)$, be $C^k$ differentiable manifolds, $f: M_1 \rightarrow M_2$ be a smooth map and $p \in U \in \tau_1$. \\
+We define a differential (or pushforward) as a map between tangent spaces as follows:
+\begin{flalign}
+	& df: T_pM_1 \rightarrow T_{f(p)}M_2 \\
+	& df([\gamma]_\text{\texttildelow}) := [f \circ \gamma]\text{\texttildelow} \in T_{f(p)}M_2
+\end{flalign}
+Note that $[f \circ \gamma]\text{\texttildelow}$ is a equivalence class of all curves $f \circ \gamma: (-1, 1) \rightarrow M_2$, with $(f \circ \gamma)(0) = f(p)$ and $(f \circ \gamma_1) \text{\texttildelow} (f \circ \gamma_2) \iff D_{\psi \circ (f \circ \gamma_1)}(0) = D_{\psi \circ (f \circ \gamma_2)}(0)$, for some $\psi$ being a chart of $M_2$ on neighbourhood of $f(p)$. \\\\
+
+Given that $\{\frac{\partial}{\partial x^i} \}$ is a basis for $T_pM_1$ with each term corresponding to a smooth curve $\gamma_i: (-1, 1) \rightarrow M$, $\gamma_i(0) = p$, i.e $\{\frac{\partial}{\partial x^i} = [\gamma_i]_\text{\texttildelow}\}$, $\{\frac{\partial f}{\partial x^i}  = [f \circ \gamma_i]_\text{\texttildelow} \}$ is a basis for $T_{f(p)} M_2$, and is a dual basis of cotangent space $\{dx_i\}$, with $dx_i(\tangentvector{}{x_j}) = \delta{ij}$, then
+\begin{flalign}
+	& f(x_1, x_2, \dots x_n) = (f_1, f_2, \dots f_m)\\
+	& df: T_pM_1 \rightarrow T_{f(p)}M_2 \\
+	& u := \sum_{i}^{n} \lambda_i \tangentvector{}{x^i}, \text{ then a differential is defined as } \\
+	& df_p(u) = \sum_{i}^{n} \lambda_i \tangentvector{f}{x^i} dx_i
+	%& df(v) = D_{\phi \circ \gamma_1}(0)\\
+\end{flalign}
 
 \section{Submersion}
 Let $M, N$ be manifolds and $f: M \rightarrow N$ be a smooth map. \\
 Its pushforward $df: T_pM \rightarrow T_{f(p)}N$ is called an immersion if it is a bijective map. \\
-
-\section{Tangent bundle}
-Let $M$ be a $C^k$ differentiable manifold. We define a Tangent bundle as a set consisting of all tangent spaces defined as:
-$TM := \bigcup\limits_{p \in M} \{p\} \times T_pM$
 
 \subsubsection{Natural projection}
 Natural projection $\pi: TM \rightarrow M$ is defined as:
@@ -255,7 +267,27 @@ Observe that $\bigwedge^n(v_1 \wedge \dots \wedge v_n) = T v_1 \wedge \dots \wed
 
 \section{1-forms}
 \begin{definition}
-Let $M_1, M_2$ be two manifolds. 
+Let $M_1, M_2$ be a n-dimensional, $C^k$ smooth manifolds and $x \in M$. \\
+We define a 1-form mapping $\omega_x: T_xM \rightarrow \Real$, where $\omega_x(u)$ is a linear form. \\
+Vector space of such 1-forms is isomorphic to a vector space $\bigwedge^1(T_xM)$.
+
+\end{definition}
+\begin{example}
+	Consider a tangent space $T_xM$ with a basis $\frac{\partial}{\partial x^i}$ and its dual basis $dx_i(\tangentvector{}{x^j}) := \delta{ij}$.
+	Let $\omega: T_xM \rightarrow \Real$, $\omega(u) = f(u) dx_1(u)$. Given that $u = \sum_{n}^{i=1} \lambda_i \tangentvector{}{x^i}$, it follows that
+	\begin{flalign}
+		&\omega(u) = f(u) dx_1 \left(\sum_{n}^{i=1} \lambda_i \tangentvector{}{x^i}\right). \text{ Then it follows, that from linearity of $w, dx_1$ }\\
+		&\omega(u) = f(u) \sum_{n}^{i=1} \left(\lambda_i dx_1\left(\tangentvector{}{x^i}\right)\right) \\
+		&\omega(u) = f(u) \sum_{n}^{i=1} \lambda_i \delta_{i, 1} \text{, and finally } \\
+		&\omega(u) = f(u) \lambda_1
+	\end{flalign}
+\end{example}
+
+\subsection{Basis of a vector space of 1-forms, $\bigwedge^1(T_xM)$}
+Given a smooth function $f: M_1 \rightarrow M_2$ and a basis of tangent space $\tangentvector{}{x^i}$, we define a
+
+\begin{definition}
+Let $M_1, M_2$ be two manifolds and $f: M_1 \rightarrow M_2$ be a smooth function.
 \end{definition}
 
 %\section{Differential forms}
