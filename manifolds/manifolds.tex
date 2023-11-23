@@ -23,6 +23,7 @@ singlelinecheck=false % <-- important
 \usepackage{url}
 \newcommand{\Lagr}{\mathcal{L}}
 \newcommand{\Real}{\mathbb{R}}
+\newcommand{\Natural}{\mathbb{N}}
 
 \graphicspath{ {./images/} }
 
@@ -31,6 +32,10 @@ singlelinecheck=false % <-- important
 \renewcommand{\contentsname}{Rozdziały}
 \renewcommand{\figurename}{Grafika}
 \newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
 \captionsetup[table]{name=Tabela}
 
 \title{Manifolds}
@@ -82,6 +87,11 @@ Thus $T_pM$ is a vector space isomorphic to $\mathbb{R}^n$.
 
 \subsubsection{Basis}
 If $B = \{e_1, e_2, .. e_n\}$ is a basis of $\mathbb{R}^n$, then $B_{T_pM} = \{h_*^{-1}(e_1), h_*^{-1}(e_2), .. h_*^{-1}(e_n)\}$ is a basis of $T_pM$.
+Basis is often denoted by the following notation:
+\begin{flalign}
+	& \frac{\partial}{\partial x^i}\text{\texttildelow} := h_*^{-1}(e_i) \\
+	& \frac{\partial}{\partial x^i}\text{\texttildelow} \in T_pM
+\end{flalign}
 
 
 \subsection{Differential}
@@ -103,10 +113,10 @@ If $B_{T_pM} = \{b_1, b_2, ..., b_n\}$ is a basis of tangent space, then basis o
 \begin{flalign}
 	& b_i^* \in \Lagr(T_pM \rightarrow \Real), b_j \in B_{T_pM} \\
 	& b_i^* (b_j) := \delta_{ij} =
-						\begin{cases}
-								1, &         \text{if } i=j,\\
-								0, &         \text{if } i\neq j.
-						\end{cases}
+		\begin{cases}
+				1, & \text{if } i=j,\\
+				0, & \text{if } i\neq j.
+		\end{cases}
 \end{flalign}
 
 \section{Submersion}
@@ -176,6 +186,77 @@ From this definition, the following properties follow:
 	Let $v = \lambda u$. Then $u \wedge v = u \wedge (\lambda u) = \lambda (u \wedge u) = 0$. \\
 	\end{proof}
 \end{theorem}
+
+\subsection{Alternating multilinear form}
+\begin{definition}
+Let $V$ be a vector space over field $F$. An alternating multilinear form of degree $p$ is a map: $V \times V \times \dots \times V \rightarrow F$ such that
+
+\begin{flalign}
+&M(u_1, \dots, u_i, \dots, u_j, \dots u_p) = M(u_1, \dots, u_j, \dots, u_i, \dots u_p) \\
+&M(u_1,\dots, \lambda u_i + w, \dots, \dots u_p) = \lambda M(u_1, \dots, u_i, \dots, \dots u_p) + M(u_1, \dots, w, \dots, \dots u_p)
+\end{flalign}
+The set of all such forms $M$ is a vector space. Let $a_i: \{0, \dots, p\} \rightarrow \{0, \dots, n\}$ be a strictly increasing sequence, and $\{v_1, \dots, v_n\}$ be a basis of $V$. Then a multilinear form $M$ of degree $p$ for any set of vectors in a given basis can be trivially transformed by the properties of $M$ into a form $M(u_1, \dots u_2) = \lambda_1 M(v_{a_1}, \dots v_{a_p}) + \lambda_2 M(v_{a_1}, \dots v_{a_p}) + \dots, 
+$M(v_{a_1}, \dots, v_{a_p})$. Since $a_i$ is strictly increasing, if we choose $p$ elements out of $n$, there are ${n}\choose{p}$ possibilities to do it. ${n}\choose{p}$ is also a dimension of the vector space of such forms $M$. In particular, if $p > n$, we just define a dimension to be 0.
+
+\begin{example}
+Let 
+\[
+A = 
+\begin{bmatrix}
+    v_1 & v_2 & \dots & v_n \\
+\end{bmatrix}
+\] be a matrix in $\Real^n$.\\
+Then a map $M(v_1, v_2, \dots, v_n) = det(A)$ is an alternating multilinear form of degree $n$.
+\end{example}
+
+\end{definition}
+
+\subsection{Dual Operator}
+\begin{definition}
+Let $X, Y$ be normed vector spaces and $T: X \rightarrow Y$ be a linear operator. Dual operator $T^*: Y^* \rightarrow X^*$ (note the reversed $Y^*, X^*$) is defined as $T^*(f) = f \circ T$.
+\end{definition}
+
+\subsection{p-th exterior power}
+\begin{definition}
+	Let $V$ be a finite-dimensional vector space over field $F$, \\
+	and $V_{AM} = \{ B: V \times \dots \times V \rightarrow F : B \text{ is alternating multilinear form.} \}$ be a vector space of all alternating multilinear forms over $V$. p-th exterior power of $V$, denoted with $\bigwedge\nolimits^p V$ is a dual space of $V_{AM}$. i.e. $\bigwedge\nolimits^p V = V_{AM}^*$. Elements of $\bigwedge\nolimits^p V$ are called p-vectors.
+\end{definition}
+
+\begin{definition}
+	Given $u_1, u_2 \dots, u_n \in V$, the exterior product is a linear map \\
+	$u_1 \wedge u_2 \wedge \dots \wedge u_n: V_{AM} \rightarrow F$ such that $(u_1 \wedge u_2 \wedge \dots \wedge u_n)(M) = M(u_1, u_2, \dots u_n)$.
+\end{definition}
+
+\begin{theorem}
+$u_1 \wedge u_2 \wedge \dots \wedge u_n = 0 \iff \\
+(\exists \lambda_1, \lambda_2, \dots \lambda_n \in F: \exists i \in \{1, \dots, n\}: \lambda_i \neq 0: 
+\lambda_1 u_1 + \lambda_2 u_2 \dots + \lambda_n u_n = 0 \text{ i.e. they are linearly dependent} )$
+\begin{proof}
+Without a loss of generality assume that $u_n = \lambda_1 u_1 + \lambda_2 u_2 \dots$ \\
+Then due to definition based on alternating multilinear forms, it follows that \\
+$M(u_1, u_2, \dots, u_n) = M(u_1, u_2, \dots, \lambda_1 u_1 + \lambda_2 u_2 \dots) = \\ 
+\lambda_1 M(u_1, u_2, \dots, u_1) + \lambda_2 M(u_1, u_2, \dots, u_2) + \dots = \\
+\text{(by the antilinear property, swapping for each element a pair)} (u_i, u_{n-i}),  \\
+= -\lambda_1 M(u_1, u_2, \dots, u_1) -\lambda_2 M(u_1, u_2, \dots, u_2) -\dots$ \\
+Finishing with $a = -a \iff a = 0$
+\end{proof}
+\end{theorem}
+
+Exterior powers have natural properties w.r.t. the linear transformations. Given a linear operator $T: V \rightarrow W$ and a form $M: W \times W \times \dots \times W \rightarrow F_W$, we may induce an operator \\
+$T^*M: V \times V \dots \times V \rightarrow F_W$ as $(T^*M)(v_1, v_2, \dots, v_n) := M(T v_1, T v_2, \dots T v_n)$.
+\\\\
+This defines a dual map $\bigwedge^p T: \bigwedge^p V \rightarrow \bigwedge^p W$, $(\bigwedge^p T)(v_1 \wedge v_2 \dots) := (T v_1) \wedge (T v_2) \dots$
+
+\begin{example}
+One of such maps is very familiar and used frequently. Take $p = n$ for some $n$-dimensional vector space $V$. Then a vector space $\bigwedge^pV$ is 1 dimensional as ${n}\choose{p}$ = ${n}\choose{n}$ = 1 and the dimension of a dual space of all the alternating linear forms, $V^*_{AL}$ is equal to the dimension of the vector space $V_{AL}$ itself.
+In fact, this map is a determinant itself. \\
+Observe that $\bigwedge^n(v_1 \wedge \dots \wedge v_n) = T v_1 \wedge \dots \wedge Tv_n$, ... TODO
+\end{example}
+
+\section{1-forms}
+\begin{definition}
+Let $M_1, M_2$ be two manifolds. 
+\end{definition}
 
 %\section{Differential forms}
 %
