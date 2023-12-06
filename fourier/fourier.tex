@@ -77,6 +77,26 @@ And so, finally, we get the Cauchy-Riemann equations:
 \end{equation}
 These are the conditions under which we say that $f$ is complex differentiable at some $z_0$. Moreover, if $f$ is complex differentiable in its domain, then we say that $f$ is holomorphic.
 
+\section{Differential forms}
+Similarly to how we defined a differential forms in the manifolds in $\Real^n$, we can define them in the complex plane. Since $z(x, y) = x + i y$, the isomoprhism between differential forms on the vector spaces $\bigwedge^{1}(\Complex^n)$ and $\bigwedge^{2}(\Real^{2n})$ is given by the matrix
+\begin{equation}
+	\begin{bmatrix}
+		1 & i \\
+	\end{bmatrix}
+\end{equation}
+i.e. $dz = dx + i dy$.
+We may define a conjugate basis of this one-form as $d\bar{z} = dx - i dy$.
+Note, that this simplifies the integration of complex functions. If $\omega = f(z) dz$ is a complex differential form and $f(z) = f_x(z) + i f_y(z)$, then
+\begin{flalign}
+	& g^*\omega = ((f_x \circ g) + i (f_y \circ g)) (dx + i dy) \\
+	& g^*\omega = ((f_x \circ g) dx - (f_y \circ g) dy) + i ((f_y \circ g) dx + (f_x \circ g) dy).
+\end{flalign}
+Then we may simply evaluate the integral as
+\begin{equation}
+	\int_{\gamma_{((a, b))}} \omega = \int_{\gamma} g^*\omega = \int_{\gamma} ((f_x \circ g) dx - (f_y \circ g) dy) + i ((f_y \circ g) dx + (f_x \circ g) dy).
+\end{equation}
+where $\gamma$ is a curve $(a, b) \to \Real^2$.
+
 \section{Bounded variation}
 
 Let $f: [a, b] \to \Complex$ be a complex-valued function of a real variable. We say that $f$ is of bounded variation if the quantity
@@ -84,5 +104,9 @@ Let $f: [a, b] \to \Complex$ be a complex-valued function of a real variable. We
 	V_a^b(f) = \sup_P \sum_{i=1}^n_A |f(x_i) - f(x_{i-1})|,
 \end{equation}
 where ${P \in \{A = \{x_0, x_1, \dots, x_{n_A}\}: \text{ - partition of (a, b) } \}}$.
+
+\section{Fourier series}
+\subsection{Fourier coefficients}
+
 
 \end{document}
