@@ -1,0 +1,88 @@
+%LaTeX Template for short student reports.
+% Citations should be in bibtex format and go in references.bib
+\documentclass[a4paper, 11pt]{article}
+\usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
+\geometry{a4paper} 
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{graphicx} 
+\usepackage{amsmath,amsfonts,amssymb,amsthm}  
+\usepackage{bm}  
+\usepackage[backend=bibtex,style=numeric]{biblatex}  %backend=biber is 'better'
+\usepackage[bookmarks,colorlinks,breaklinks]{hyperref}  
+%\hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black} % black links, for printed output
+\usepackage{memhfixc} 
+\usepackage{pdfsync}  
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs, multirow}
+\usepackage[
+singlelinecheck=false % <-- important
+]{caption}
+\usepackage{url}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\tangentvector}[2]{\frac{\partial #1}{\partial #2}}
+
+\graphicspath{ {./images/} }
+
+\pagestyle{fancy}
+
+\renewcommand{\contentsname}{Chapter Contents}
+\renewcommand{\figurename}{Figure}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\captionsetup[table]{name=Table}
+
+\title{Fourier Analysis}
+%\date{}
+
+\addbibresource{references.bib}
+
+\begin{document}
+\maketitle
+\hypersetup{linkcolor=black}
+\tableofcontents
+
+\section{Cauchy Riemann}
+Let $f: \Omega \to \Complex$ be a complex-valued function of a complex variable with $f(z) = u(z) + i v(z)$ and $g: \Real^2 \to \Real^2$ is a function defined as $g(x, y) = (u'(x, y), v'(x, y))^T$, with $u(z) = u'(x, y), v(z) = v'(x, y)$.
+Jacobian matrix of $g$ is given by
+\begin{equation}
+	J_g = \begin{bmatrix}
+		\tangentvector{u'}{x} & \tangentvector{u'}{y} \\
+		\tangentvector{v'}{x} & \tangentvector{v'}{y}.
+	\end{bmatrix}
+\end{equation}
+The property we would like to achieve is that we somehow treat an $\Real^2$ vector as a scalar in $\Complex$, so that linear transformation given by $J_g$ is orthogonal (with appropriate scalar). Multiplication of 2 complex numbers may only scale/rotate coordinates given by the $(Re(z), Im(z))$ and so we want our matrix multiplication to follow that same property. Finally what we get is:
+\begin{equation}
+	J_g = \begin{bmatrix}
+		\tangentvector{u'}{x} & \tangentvector{u'}{y} \\
+		\tangentvector{v'}{x} & \tangentvector{v'}{y}.
+	\end{bmatrix}
+	= \begin{bmatrix}
+		a & -b \\
+		b & a.
+	\end{bmatrix}
+\end{equation}
+And so, finally, we get the Cauchy-Riemann equations:
+\begin{equation}
+	\tangentvector{u'}{y} + \tangentvector{v'}{x} = 0, \\
+	\tangentvector{u'}{x} - \tangentvector{v'}{y} = 0.
+\end{equation}
+These are the conditions under which we say that $f$ is complex differentiable at some $z_0$. Moreover, if $f$ is complex differentiable in its domain, then we say that $f$ is holomorphic.
+
+\section{Bounded variation}
+
+Let $f: [a, b] \to \Complex$ be a complex-valued function of a real variable. We say that $f$ is of bounded variation if the quantity
+\begin{equation}
+	V_a^b(f) = \sup_P \sum_{i=1}^n_A |f(x_i) - f(x_{i-1})|,
+\end{equation}
+where ${P \in \{A = \{x_0, x_1, \dots, x_{n_A}\}: \text{ - partition of (a, b) } \}}$.
+
+\end{document}
