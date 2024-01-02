@@ -131,7 +131,10 @@ Given that $\{\frac{\partial}{\partial x^i} \}$ is a basis for $T_pM_1$ with eac
 	& f(x_1, x_2, \dots x_n) = (f_1, f_2, \dots f_m)\\
 	& df: T_pM_1 \rightarrow T_{f(p)}M_2 \\
 	& u := \sum_{i}^{n} \lambda_i \tangentvector{}{x^i}, \text{ then a differential is defined as } \\
-	& df_p(u) = \sum_{i}^{n} \lambda_i \tangentvector{f}{x^i} dx_i
+	& df_p(u) = \sum_{i}^{n} \tangentvector{f}{x^i}(p) dx_i(u) \\
+	& df_p(u) = \sum_{i}^{n} \tangentvector{f}{x^i}(p) dx_i \left( \sum_{j}^{n} \lambda_j \tangentvector{}{x^j} \right)\\
+	& df_p(u) = \sum_{i}^{n} \tangentvector{f}{x^i}(p) dx_i \left( \lambda_i \tangentvector{}{x^i} \right)\\
+	& df_p(u) = \sum_{i}^{n} \lambda_i \tangentvector{f}{x^i}(p) \\
 	%& df(v) = D_{\phi \circ \gamma_1}(0)\\
 \end{flalign}
 
@@ -265,7 +268,9 @@ In fact, this map is a determinant itself. \\
 Observe that $\bigwedge^n(v_1 \wedge \dots \wedge v_n) = T v_1 \wedge \dots \wedge Tv_n$, ... TODO
 \end{example}
 
-\section{1-forms}
+\section{differential forms}
+
+\subsection{1-forms}
 \begin{definition}
 Let $M_1, M_2$ be a n-dimensional, $C^k$ smooth manifolds and $x \in M$. \\
 We define a 1-form mapping $\omega_x: T_xM \rightarrow \Real$, where $\omega_x(u)$ is a linear form. \\
@@ -284,11 +289,49 @@ Vector space of such 1-forms is isomorphic to a vector space $\bigwedge^1(T_xM)$
 \end{example}
 
 \subsection{Basis of a vector space of 1-forms, $\bigwedge^1(T_xM)$}
-Given a smooth function $f: M_1 \rightarrow M_2$ and a basis of tangent space $\tangentvector{}{x^i}$, we define a
+%Given a smooth function $f: M_1 \rightarrow M_2$, we define its exterior derivative as:
+%$df(u) := \sum_{n}^{i=1} \tangentvector{f}{x^i} dx_i(u)$. $df$ is a vector in $\bigwedge^1(T_xM)$.
+
+\subsection{k-form}
+%\subsubsection{notation}
+%From now on, any p-vector of form $dx_{i_1} \wedge dx_{i_2} \wedge \dots \wedge dx_{i_k}$ for $I = \{i_1, i_2, \dots i_n\}$ being a strictly increasing sequence, will be denoted with $dx_{123\dots k}$. Simirarly if $k=3$, we will denote $dx := 
+\begin{definition}
+	Given a vector $\omega \in \bigwedge^n(TxM)$, with $\omega = \sum \tangentvector{f}{x^i}$ 
+\end{definition}
+
+\section{Integration of differential forms}
+
+\subsection{Integration of 1-forms}
+\begin{definition}
+\end{definition}
+
+\section{Tensor Space}
+\begin{definition}
+	Let $\{V_i\}$ be a set of vector spaces. The map $\tau: \prod V_i \rightarrow F$, where $F$ is some common field for all the vector spaces, is called k-linear if its linear in each component. Set of all such maps form a vector space.
+\end{definition}
+\begin{definition}
+	Let now $V_i = V$. We define $T^k(V) := \{\tau: \prod^k V \rightarrow F$, \tau - \text{multilinear} \}$ 
+\end{definition}
+Let us consider $T^1(V)$. $\tau \in T^1(V)$ takes $1$ copy of $V$. 
+$\tau: V \rightarrow F$. Since $\tau$ is linear in its only argument, the vector space of all such functions is simply a dual space of $V$. We may understand $T^k(V)$ as a generalization of dual space to product spaces.
+
+\begin{theorem}
+	Let $T \in L(V, W)$ (L - set of all linear op. from V to W), then
+	$\exists T^*: \tau^k(W) \rightarrow \tau^k(V)$
+\end{theorem}
 
 \begin{definition}
-Let $M_1, M_2$ be two manifolds and $f: M_1 \rightarrow M_2$ be a smooth function.
+	Let $\tau \in T^k(V), \sigma \in T^l(V)$. We define their tensor product as follows:
+	$\tau \otimes \sigma \in T^{k+l}$,  \\
+	$\tau \otimes \sigma(v_1, \dots, v_k, v_{k+1}, \dots, v_{k+l}) = \tau(v_1, \dots, v_k)\sigma(v_{k+1}, \dots, v_{k+l})$
 \end{definition}
+
+This definition yields 2 facts: \\
+$\tau \otimes \sigma \neq \sigma \otimes \tau$ - non commutative. \\
+$(\tau \otimes \sigma) \otimes \omega = \tau \otimes (\sigma \otimes \omega)$ - associative
+
+\section{Musical morphisms}
+Let $V$ an inner product space with a defined metric tensor.
 
 %\section{Differential forms}
 %
