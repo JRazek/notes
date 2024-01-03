@@ -356,19 +356,53 @@ Let $V$, $W$ be two vector spaces. We define a tensor product as a vector space 
 	\end{proof}
 \end{theorem}
 
-\subsection{Tensor type (n, k)}
-\begin{definition}
-	Let $V$ be a vector space. We define a tensor type $(n, k)$ as a tensor product of $n$ copies of $V$ and $k$ copies of $V^*$.
-	In index notation we denote it as $T^{i_1, \dots, i_n}_{j_1, \dots, j_k}$.
-\end{definition}
-
 \subsection{Tensor basis}
 Given 2 vector spaces $V, W$ and their bases $B_V, B_W$, they induce a basis for $V \otimes W$ as follows:
-$B_{V \otimes W} = \{v_i \otimes w_j\}$, where $v_i \in B_V, w_j \in B_W$. Thus it has $\dim(V) \dim(W)$ elements. \\
+$B_V \otimes B_W = \{v_i \otimes w_j, \text{ where } $v_i \in B_V, w_j \in B_W\}$, . Thus it has $\dim(V) \dim(W)$ elements. \\
 i.e. $V \otimes W \cong \mathbb{R}^{\dim(V) \dim(W)}$.
 \subsubsection{Simple Tensors}
 Now given these bases and a scalar $a \in F$, we can define a simple tensor as $a (v_i \otimes w_j)$. \\
 Given any tensor $T \in V \otimes W$, we can write it as a linear combination of simple tensors. \\
+$T = \sum_{i, j} a_{ij} v_i \otimes w_j$ for some $a_{ij} \in F$.
+Following properties of tensor product follow:
+\begin{flalign*}
+	& (v_1 + v_2) \otimes w = v_1 \otimes w + v_2 \otimes w \\
+	& v \otimes (w_1 + w_2) = v \otimes w_1 + v \otimes w_2 \\
+	& (a v) \otimes w = v \otimes (a w) = a (v \otimes w)
+\end{flalign*}
+
+\subsection{Tensor type (n, k)}
+\begin{definition}
+	Let $V$ be a vector space. We define a tensor type $(n, k)$ as a tensor product of $n$ copies of $V$ and $k$ copies of $V^*$. 
+	$T^n_k(V) := V \otimes \dots \otimes V \otimes V^* \otimes \dots \otimes V^*$.	\\
+\end{definition}
+\subsubsection{Tensor product between type (n, k) and (m, l)}
+Earlier we defined how to multiply 2 tensors $\tau \in T^k(V) = T^k_0(V), \sigma \in T^l(V) = T^l_0(V)$, which correspond to the tensor types $(k, 0)$ and $(l, 0)$ respectively. i.e.
+\begin{flalign}
+	&\tau \otimes \sigma \in T^{k+l},  \\
+	&\tau \otimes \sigma(v_1, \dots, v_k, v_{k+1}, \dots, v_{k+l}) = \tau(v_1, \dots, v_k)\sigma(v_{k+1}, \dots, v_{k+l})
+\end{flalign}
+We can generalize this to any tensors of types (n, k), (m, l) as follows:
+\begin{flalign}
+	&\tau \in T^n_k(V), \sigma \in T^m_l(V) \\
+	&\tau \otimes \sigma \in T^{n+m}_{k+l}(V) \\
+	&(\tau \otimes \sigma)^{i_1 \dots i_{n+m}}_{j_1 \dots j_{k+l}} = \tau^{i_1 \dots i_n}_{j_1 \dots j_k} \sigma^{i_{n+1} \dots i_{n+m}}_{j_{k+1} \dots j_{k+l}}
+\end{flalign}
+
+
+
+\begin{example}
+	$T^0_0$ is a scalar,	       								\\
+	$T^1_0$ is a vector,    	   								\\
+	$T^0_1$ is a covector, linear functionals, 1-forms	 		\\
+	$T^1_1$ is a linear map,	 								\\
+\end{example}
+\begin{example}
+	An inner produce, a 2-form (or bilinear form) is a tensor of type $(0, 2)$. \\
+	A bivector is a tensor of type $(2, 0)$. \\
+	If dim(V) = 3, then a cross product is an example of a (1, 2) tensor.
+
+\end{example}
 
 \section{Musical isomorphisms}
 Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define a musical isomorphisms $\musFlat{}: TM \rightarrow T^*M$ s.t. $\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y}$ \\
