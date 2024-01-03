@@ -116,6 +116,14 @@ If $B_{T_pM} = \{b_1, b_2, ..., b_n\}$ is a basis of tangent space, then basis o
 Consider now a basis of a tangent space $\frac{\partial}{\partial x^i}\text{\texttildelow} := h_*^{-1}(e_i)$. \\
 Its dual basis is given by $dx_i: T_xM \rightarrow \Real$, $dx_i(\frac{\partial}{\partial x^j}) := \delta{ij}.
 
+\subsection{Directional Derivative}
+Let $M$ be a $C^k$ differentiable manifold, $f: M \rightarrow \Real$ be a smooth map, $p \in M$ and $v \in T_pM$. \\
+We define a directional derivative as a map:
+\begin{flalign}
+	& D_vf: T_pM \rightarrow \Real \\
+	& D_vf(w) := w(f) = D_{f(\gamma(t))}(t=0) \text{ where } \gamma: (-1, 1) \rightarrow M \text{ s.t. } \gamma(0) = p, \gamma\text{\texttildelow} = v
+\end{flalign}
+
 \subsection{Tangent bundle}
 Let $M$ be a $C^k$ differentiable manifold. We define a Tangent bundle as a set consisting of all tangent spaces defined as:
 $TM := \bigcup\limits_{p \in M} \{p\} \times T_pM$
@@ -336,6 +344,10 @@ $(\tau \otimes \sigma) \otimes \omega = \tau \otimes (\sigma \otimes \omega)$ - 
 
 \subsection{Tensor Product}
 Let $V$, $W$ be two vector spaces. We define a tensor product as a vector space $A$ with a bilinear map $f: V \times W \rightarrow A$ with so called universal property. i.e. given a vector space $Z$ and a bilinear map $\tau: V \times W \rightarrow Z$, $\exists! \bar{\tau}: A \rightarrow Z: \bar{\tau} \circ f = \tau$. Usually in this context $A$ and $f$ are denoted by $V \otimes W := A$ and $\otimes := f$.
+\begin{figure}[h]
+\includegraphics{universal_property}
+\caption{Universal property}
+\end{figure}
 
 \begin{theorem}
 	Tensor product between 2 vector spaces always exists.
@@ -343,6 +355,20 @@ Let $V$, $W$ be two vector spaces. We define a tensor product as a vector space 
 		TODO
 	\end{proof}
 \end{theorem}
+
+\subsection{Tensor type (n, k)}
+\begin{definition}
+	Let $V$ be a vector space. We define a tensor type $(n, k)$ as a tensor product of $n$ copies of $V$ and $k$ copies of $V^*$.
+	In index notation we denote it as $T^{i_1, \dots, i_n}_{j_1, \dots, j_k}$.
+\end{definition}
+
+\subsection{Tensor basis}
+Given 2 vector spaces $V, W$ and their bases $B_V, B_W$, they induce a basis for $V \otimes W$ as follows:
+$B_{V \otimes W} = \{v_i \otimes w_j\}$, where $v_i \in B_V, w_j \in B_W$. Thus it has $\dim(V) \dim(W)$ elements. \\
+i.e. $V \otimes W \cong \mathbb{R}^{\dim(V) \dim(W)}$.
+\subsubsection{Simple Tensors}
+Now given these bases and a scalar $a \in F$, we can define a simple tensor as $a (v_i \otimes w_j)$. \\
+Given any tensor $T \in V \otimes W$, we can write it as a linear combination of simple tensors. \\
 
 \section{Musical isomorphisms}
 Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define a musical isomorphisms $\musFlat{}: TM \rightarrow T^*M$ s.t. $\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y}$ \\
