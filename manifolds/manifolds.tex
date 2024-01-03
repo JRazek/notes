@@ -334,15 +334,20 @@ This definition yields 2 facts: \\
 $\tau \otimes \sigma \neq \sigma \otimes \tau$ - non commutative. \\
 $(\tau \otimes \sigma) \otimes \omega = \tau \otimes (\sigma \otimes \omega)$ - associative
 
-\section{Musical morphisms}
+\subsection{Tensor Product}
+Let $V$, $W$ be two vector spaces. We define a tensor product as a vector space $A$ with a bilinear map $f: V \times W \rightarrow A$ with so called universal property. i.e. given a vector space $Z$ and a bilinear map $\tau: V \times W \rightarrow Z$, $\exists! \bar{\tau}: A \rightarrow Z: \bar{\tau} \circ f = \tau$. Usually in this context $A$ and $f$ are denoted by $V \otimes W := A$ and $\otimes := f$.
+
+\begin{theorem}
+	Tensor product between 2 vector spaces always exists.
+	\begin{proof}
+		TODO
+	\end{proof}
+\end{theorem}
+
+\section{Musical isomorphisms}
 Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define a musical isomorphisms $\musFlat{}: TM \rightarrow T^*M$ s.t. $\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y}$ \\
 Similarly its inverse is expressed by the operator $\musSharp: T^*M \rightarrow TM$ s.t. $\forall \omega \in T^*M, \forall y \in TM: x(y) = \innerproduct{x^{\musSharp}}{y}$
 
-%\section{Differential forms}
-%
-%\subsection{Tensor Product}
-%Let $V$, $W$ be two vector spaces over a common field the respective bases $B_V = \{b_{v_1}, b_{v_2}, \dots\}, B_W = \{b_{w_1}, b_{w_2}, \dots\}$. A tensor product of these 2 vector spaces, denoted with $A \otimes B$ is a new vector space.
-%A set of all the bases of this vector space is given by: $B = \{ (v, w) \in B_V \times B
 
 \end{document}
 
