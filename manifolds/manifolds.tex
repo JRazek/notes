@@ -25,10 +25,14 @@ singlelinecheck=false % <-- important
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Natural}{\mathbb{N}}
 \newcommand{\tangentvector}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\innerproduct}[2]{\langle #1, #2 \rangle}
+
+\usepackage{musicography}
 
 \graphicspath{ {./images/} }
 
 \pagestyle{fancy}
+
 
 \renewcommand{\contentsname}{Rozdziały}
 \renewcommand{\figurename}{Grafika}
@@ -331,7 +335,8 @@ $\tau \otimes \sigma \neq \sigma \otimes \tau$ - non commutative. \\
 $(\tau \otimes \sigma) \otimes \omega = \tau \otimes (\sigma \otimes \omega)$ - associative
 
 \section{Musical morphisms}
-Let $V$ an inner product space with a defined metric tensor.
+Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define a musical isomorphisms $\musFlat{}: TM \rightarrow T^*M$ s.t. $\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y}$ \\
+Similarly its inverse is expressed by the operator $\musSharp: T^*M \rightarrow TM$ s.t. $\forall \omega \in T^*M, \forall y \in TM: x(y) = \innerproduct{x^{\musSharp}}{y}$
 
 %\section{Differential forms}
 %
