@@ -390,7 +390,6 @@ We can generalize this to any tensors of types (n, k), (m, l) as follows:
 \end{flalign}
 
 
-
 \begin{example}
 	$T^0_0$ is a scalar,	       								\\
 	$T^1_0$ is a vector,    	   								\\
@@ -403,6 +402,63 @@ We can generalize this to any tensors of types (n, k), (m, l) as follows:
 	If dim(V) = 3, then a cross product is an example of a (1, 2) tensor.
 
 \end{example}
+
+\subsection{Einstein summation}
+To abbreviate summing over all the elements in an expression such as $a = \sum_i {x_i f_i}$, we may use Einstein notation. That is, unless stated otherwise we implicitly assume that an expression $\sum_i {x_i f_i}$, may be abbreviated to skip the summation just to $x_i f_i$. Then $a = x_i f_i$.
+
+\newpage
+
+\subsection{Covariant/contravariant transformations}
+Let $f = (X_1, X_2, \dots, Y_n)^T$, $\tilde{f} = (Y_1, Y_2, \dots, Y_n)^T$, $n \in \Natural$ be bases of some vector space $V$.
+Then any vector $v \in V$ can be uniquely expressed as a linear combination of these bases. Change of basis is given by:
+\begin{flalign} 
+& f = (X_1, \dots, X_n) \rightarrow \tilde{f} = (\sum_i{a_j^1 X_j}, \dots, \sum_i{a_j^n X_j}) = (Y_1, \dots, Y_n) \\
+\iff \\
+& fA = \tilde{f} \label{eq:covectors_basis_invariance}
+\end{flalign}
+for some change of basis matrix $A \in M_{\Real^n \times \Real^n}$, with $A_{ij} = a^i_j$ i.e. superscript describing the row.
+That is, $Y_j = \sum_i{a_i^j X_j}$.
+We may denote a vector $v$ in a basis $f$ as a vector 
+\begin{flalign} \label{eq_contravariant_basis}
+	[v]_f = (v^1, \dots v^n)^T_f,
+\end{flalign}
+which elements may be referenced by $[v]_f^i = v^i$. \textbf{$v^i$ is only valid in this context!}
+
+By \ref{eq_contravariant_basis}, it follows that $v$ may be written as a matrix product:
+\begin{flalign}
+	v = (X_1, \dots, X_n) (v^1, \dots v^n)^T_f = f [v]_f
+\end{flalign}
+Similarly we may do exactly the same for the basis $\tilde{f}$.
+\begin{flalign}
+	v = (Y_1, \dots, Y_n) (v^1, \dots v^n)^T_{\tilde{f}} = \tilde{f} [v]_{\tilde{f}}
+\end{flalign}
+Combining these 2, yields
+\begin{flalign}
+	&v = f [v]_f = \tilde{f} [v]_{\tilde{f}}. \\
+\end{flalign}
+By relation \ref{eq:covectors_basis_invariance}, we have
+\begin{flalign}
+	v = f [v]_f = \tilde{f} [v]_{\tilde{f}}. \iff 
+	v = f [v]_f = fA [v]_{\tilde{f}}. 
+\end{flalign}
+Assuming that $f \neq 0$, 
+\begin{flalign}
+	[v]_f = A [v]_{\tilde{f}}. 
+\end{flalign}
+Since $A$ is invertible, we may claim that
+\begin{flalign}
+	A^{-1}[v]_f = [v]_{\tilde{f}}. 
+\end{flalign}
+Now we may denote $A^{-1}_{ij} = \tilde{a}^i_j$, and finally applying multiplication to each row
+\begin{flalign}
+	\sum_{j} \tilde{a}^i_j [v]_f^j = [v]_{\tilde{f}}^i,
+\end{flalign}
+i.e. i-th row of $A^{-1}$ dotted with $[v]_f$.
+\begin{definition}
+	Because change of basis from $[v]_f$ to $[v]_{\tilde{f}}$ transform with the inverse of $A$, $A^{-1}$, we say that components of $[v]_f$ to $[v]_{\tilde{f}}$ transform contravariantly.
+\end{definition}
+
+
 
 \section{Musical isomorphisms}
 Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define a musical isomorphisms $\musFlat{}: TM \rightarrow T^*M$ s.t. $\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y}$ \\
