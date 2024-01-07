@@ -482,10 +482,67 @@ On the other hand by $fA = \tilde{f}$, we have
 %	[\alpha]_f [v]_f = [\alpha]_{\tilde{f}} [v]_{\tilde{f}} 
 %\end{flalign}
 
+\subsection{Covariant and contravariant components of a vector with metric}
+Let $V$ be a finite-dimensional vector space with an inner product $\innerproduct{.}{.}: V \times V \rightarrow F$. Given a vector $v \in V$, we may uniquely determine its covector $\omega$ such that 
+TODO 
+
+\subsection{Metric tensor}
+Given a inner product space $V$, we may define a metric tensor $g: V \times V \rightarrow F$ s.t. $\forall x, y \in V: g(x, y) = \innerproduct{x}{y}$. We may also define a dual metric tensor $g^*: V^* \times V^* \rightarrow F$ s.t. $\forall \alpha, \beta \in V^*: g^*(\alpha, \beta) = \innerproduct{\alpha}{\beta}$.
+\subsubsection{Choice of basis}
+Given bases $f = \{X_1, \dots\}$ and $\tilde{f} = \{Y_1, \dots\}$ of $V$, we may calculate a matrix representation of $g$ as follows:
+$[g]_f_{ij} = g(X_i, X_j)$ and $[g]_{\tilde{f}}_{ij} = g(Y_i, Y_j)$. Change of basis for this tensor is given by the transformation:
+\begin{flalign}
+	[g]_{\tilde{f}} = \left(A^{-1}\right)^T [g]_f A^{-1}
+\end{flalign}
+Since change of basis from TODO
+
+\subsection{Lowering and raising indices}
+Lowering or raising the indices means
 
 \section{Musical isomorphisms}
-Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define a musical isomorphisms $\musFlat{}: TM \rightarrow T^*M$ s.t. $\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y}$ \\
-Similarly its inverse is expressed by the operator $\musSharp: T^*M \rightarrow TM$ s.t. $\forall \omega \in T^*M, \forall y \in TM: x(y) = \innerproduct{x^{\musSharp}}{y}$
+Let $TM$ be a tangent bundle, $T^*M$ be a cotangent bundle and $\innerproduct{.}{.}: TM \times TM$ be an inner product. We define musical isomorphisms 
+\begin{flalign}
+	&\musFlat{}: TM \rightarrow T^*M \\
+	&\forall x, y \in TM: x^{\musFlat{}}(y) = \innerproduct{x}{y} \\
+	&x^{\musFlat} = \innerproduct{x}{\cdot}
+\end{flalign}
+Similarly its inverse is expressed by the operator 
+\begin{flalign}
+	&\musSharp: T^*M \rightarrow TM \\
+	&\forall \omega \in T^*M, \forall y \in TM: x(y) = \innerproduct{x^{\musSharp}}{y} \iff \\
+	&\innerproduct{x}{\cdot}^{\musSharp} = x
+\end{flalign}
+Its easy to prove by definition of linearity that both $\musFlat{}$ and $\musSharp$ are linear operators. Note: these operators may vary from point to point on $TM$.
+
+\subsection{Choice of basis}
+Suppose we're given a basis $f = (X_1, \dots)$, $f^* = (X_1^*, \dots)$, with $X_i^*(X_j) = \delta_{ij}$ and an inner product. Given a vector $g \in V^*$, we want to find $g^{\musSharp}$. 
+Let $v = f [v]_f$. 
+Then by definition of $\musSharp$:
+\begin{flalign}
+	g^{\musSharp} = \innerproduct{g}{\cdot} = \innerproduct{\sum_{i} X_i [v]_f^i}{\cdot} \\
+	= \sum_i [v]_f^i \innerproduct{X_i}{\cdot}
+\end{flalign}
+Solving system of linear equations will yield the elements of $[v]_f^i$.
+\begin{example}
+	Suppose we're given an euclidean product defined for the euclidean basis \\
+	$f = (\partial{X_1}, \dots)$ as $\innerproduct{\partial{X_i}}{\partial{X_j}} = \delta_{ij}$.
+	Let $f^* = (dx_1, \dots)$.
+	Then metric tensor in this basis is defined as $[g]_f_{ij}$ = \delta_{ij}$.
+	Furthermore suppose that we know coordinates of $v^* \in V^*$, in basis $\tilde{f}$, $v^* = \tilde{f^*}[v^*]_{\tilde{f}}_{ij}$
+	We want to find $v \in V$, s.t. 
+	\begin{flalign}
+		(v^*)^{\musSharp} = \innerproduct{v}{\cdot}
+	\end{flalign}
+	Using an identity $fA = \tilde{f} \iff f^*A = \tilde{f^*}$ and $f A [v]_{\tilde{f}} = \sum_i (A [v]_{\tilde{f}})^i \partial{X_i}$, we get by linearity of $\musSharp$.
+	\begin{flalign}
+		(v^*)^{\musSharp} = \innerproduct{v}{\cdot} = \sum_i (A [v]_{\tilde{f}})^i \innerproduct{\partial{X_i}}{\cdot}
+	\end{flalign}
+	Now construct a matrix equation, which solves for $[v]_{\tilde{f}}$ using different $w \in V$ and applying $\innerproduct{v}{w}$.
+\end{example}
+
+%\begin{example}
+%	Now lets assume that we are given an orthonormal basis $f$. By definition \
+%\end{example}
 
 
 \end{document}
