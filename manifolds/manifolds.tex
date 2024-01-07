@@ -418,6 +418,8 @@ Then any vector $v \in V$ can be uniquely expressed as a linear combination of t
 \end{flalign}
 for some change of basis matrix $A \in M_{\Real^n \times \Real^n}$, with $A_{ij} = a^i_j$ i.e. superscript describing the row.
 That is, $Y_j = \sum_i{a_i^j X_j}$.
+
+\subsubsection{Contravariant transformation}
 We may denote a vector $v$ in a basis $f$ as a vector 
 \begin{flalign} \label{eq_contravariant_basis}
 	[v]_f = (v^1, \dots v^n)^T_f,
@@ -447,7 +449,7 @@ Assuming that $f \neq 0$,
 \end{flalign}
 Since $A$ is invertible, we may claim that
 \begin{flalign}
-	A^{-1}[v]_f = [v]_{\tilde{f}}. 
+	A^{-1}[v]_f = [v]_{\tilde{f}}. \label{eq:covector_transformation_vectors}
 \end{flalign}
 Now we may denote $A^{-1}_{ij} = \tilde{a}^i_j$, and finally applying multiplication to each row
 \begin{flalign}
@@ -455,9 +457,30 @@ Now we may denote $A^{-1}_{ij} = \tilde{a}^i_j$, and finally applying multiplica
 \end{flalign}
 i.e. i-th row of $A^{-1}$ dotted with $[v]_f$.
 \begin{definition}
-	Because change of basis from $[v]_f$ to $[v]_{\tilde{f}}$ transform with the inverse of $A$, $A^{-1}$, we say that components of $[v]_f$ to $[v]_{\tilde{f}}$ transform contravariantly.
+	Because change of basis from $[v]_f$ to $[v]_{\tilde{f}}$ transform with the inverse of $A$, $A^{-1}$, we say that components of $[v]_f$ to $[v]_{\tilde{f}}$ transform contravariantly. i.e. 
+	\[
+		A^{-1}[v]_f = [v]_{\tilde{f}}
+	\]
 \end{definition}
 
+\subsubsection{Coavariant transformation}
+We may now consider a dual space $V*$. By definition of linear functional:
+\begin{flalign}
+	\alpha(X_i) = [\alpha]^i_f
+\end{flalign}
+i.e. for an i-th basis vector the value of the functional is the i-ith row of a vector representing this functional in $f$ basis. Note this functional in general does not require basis. Its just a vector in a dual space with no specific association to any basis. 
+For $v \in V$, we may write
+\begin{flalign}
+	\alpha(v) = \alpha(\tilde{f} [v]_{\tilde{f}}) = \sum_i [v]_{\tilde{f}}^i \alpha(Y_i)
+\end{flalign}
+On the other hand by $fA = \tilde{f}$, we have
+\begin{flalign}
+	\alpha(v) = \alpha(fA [v]_{\tilde{f}}) = \sum_i \left( \sum_j a^i_j [v]_{\tilde{f}}^j\right) \alpha(X_i) 
+\end{flalign}
+%If we describe coordinates of $\alpha$ in $f$ and $\tilde{f}$ basis as $[\alpha]_f$ and $[\alpha]_{\tilde{f}}$ respectively, then we may write
+%\begin{flalign}
+%	[\alpha]_f [v]_f = [\alpha]_{\tilde{f}} [v]_{\tilde{f}} 
+%\end{flalign}
 
 
 \section{Musical isomorphisms}
